@@ -167,8 +167,14 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(wordsCountArray, inputWord) {
+    
+    const arrayWord = wordsCountArray.filter(word => inputWord === word);
+    return arrayWord.length;
 
+}
+
+console.log(howManyTimes(wordsCount,'matter'));
 
 
 // Iteration #8: Bonus
@@ -195,8 +201,32 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
+function greatestProduct(matrix) {
+  
+  let maxProduct = 0;
+  for (let x = 0; x < matrix.length; x++){
+    for (let y = 0; y < matrix[x].length; y++){
+        let horizontally, vertically = 0;
+      
+        if (( x <= matrix.length-4 ) && ( y <= matrix[x].length-4 )){
+          //console.log(matrix[x][y]);
+          horizontally = matrix[x][y] * matrix[x+1][y] * matrix[x+2][y] * matrix[x+3][y];
+          vertically = matrix[x][y] * matrix[x][y+1] * matrix[x][y+2] * matrix[x][y+3];
+        }
+        if ((horizontally >= vertically) && (horizontally > maxProduct)){
+          maxProduct = horizontally;
+          //console.log(`maxProduct = ${maxProduct} horizontally coords: ${x},${y} ${x+1},${y} ${x+2},${y} ${x+3},${y}`);
+        }else if ((horizontally < vertically) && (vertically > maxProduct)){
+          maxProduct = vertically;
+          //console.log(`maxProduct = ${maxProduct} vertically coords: ${x},${y} ${x},${y+1} ${x},${y+2} ${x},${y+3}`);
+        }
+            
+    }
+ }
+ return maxProduct;
+}
 
+console.log(greatestProduct(matrix));
 
 
 
