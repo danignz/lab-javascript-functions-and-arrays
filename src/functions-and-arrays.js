@@ -30,12 +30,39 @@ console.log(findLongestWord(words));
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-function sumNumbers() {}
+function sumNumbers(numbersArray) {
 
+  const totalSum = numbersArray.reduce(function (accumulator, currentValue) {
+    return accumulator + currentValue;
+  });
+  
+  return totalSum;
+}
+
+console.log(sumNumbers(numbers));
 
 
 // Iteration #3.1 Bonus:
-function sum() {}
+
+const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
+
+function sum(mixedArr) {
+
+  const numericArray = mixedArr.map(element => {
+    if (typeof element === 'string'){
+       element = element.length;
+    } else if (typeof element === 'boolean') {
+       element = (element === true) ? 1 : 0;
+    }
+    return element;  
+    });
+
+    const totalSum = numericArray.reduce((accumulator, currentValue) => accumulator + currentValue);
+
+  return totalSum;
+}
+
+console.log(sum(mixedArr));
 
 
 
@@ -43,13 +70,29 @@ function sum() {}
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(numbersAvgArray) {
+
+  const sumAllNumbers = sumNumbers(numbersAvgArray);
+  return sumAllNumbers / numbersAvgArray.length;
+
+}
+
+console.log(averageNumbers(numbersAvg));
 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+function averageWordLength(wordsArray) { 
+
+  const numericArray = wordsArray.map(element => element.length );
+  const sumAllLenght = numericArray.reduce((accumulator, currentValue) => accumulator + currentValue);
+
+  return sumAllLenght / wordsArray.length; 
+}
+
+console.log(averageWordLength(wordsArr));
+
 
 // Bonus - Iteration #4.1
 function avg() {}
