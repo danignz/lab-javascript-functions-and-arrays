@@ -229,6 +229,56 @@ function greatestProduct(matrix) {
 console.log(greatestProduct(matrix));
 
 
+//Bonus - Iteration #8.1: Product of diagonals
+
+function greatestProductOfDiagonals(matrix){
+
+  let maxProduct = 0;
+  for (let x = 0; x < matrix.length; x++){
+    for (let y = 0; y < matrix[x].length; y++){
+
+        let diagonalUpRight, diagonalUpLeft, diagonalDownRight, diagonalDownLeft = 0;
+
+        if (( x - 3 >= 0 ) && ( y - 3 >= 0 )){ // its possible goto diagonalUpLeft
+
+          diagonalUpLeft = matrix[x][y] * matrix[x-1][y-1] * matrix[x-2][y-2] * matrix[x-3][y-3];      
+          if ( diagonalUpLeft > maxProduct ){
+            maxProduct = diagonalUpLeft;
+            console.log(`maxProduct = ${maxProduct}  coords: ${x},${y} ${x-1},${y-1} ${x-2},${y-2} ${x-3},${y-3}`);
+          }
+
+        } else if (( x + 3 < matrix.length ) && ( y - 3 >= 0 )){ // its possible goto diagonalUpRight
+
+          diagonalUpRight = matrix[x][y] * matrix[x+1][y-1] * matrix[x+2][y-2] * matrix[x+3][y-3]; 
+          if ( diagonalUpRight > maxProduct ){
+            maxProduct = diagonalUpRight;
+            console.log(`maxProduct = ${maxProduct}  coords: ${x},${y} ${x+1},${y-1} ${x+2},${y-2} ${x+3},${y-3}`);
+          }
+
+        } else if (( x + 3 < matrix.length ) && ( y + 3 < matrix[x].length )){ // its possible goto diagonalDownRight       
+
+          diagonalDownRight = matrix[x][y] * matrix[x+1][y+1] * matrix[x+2][y+2] * matrix[x+3][y+3]; 
+          if ( diagonalDownRight > maxProduct ){
+            maxProduct = diagonalDownRight;
+            console.log(`maxProduct = ${maxProduct}  coords: ${x},${y} ${x+1},${y+1} ${x+2},${y+2} ${x+3},${y+3}`);
+          }
+
+        } else if (( x - 3 >= 0 ) && ( y + 3 < matrix[x].length )){ // its possible goto diagonalDownLeft       
+
+          diagonalDownLeft = matrix[x][y] * matrix[x-1][y+1] * matrix[x-2][y+2] * matrix[x-3][y+3]; 
+          if ( diagonalDownLeft > maxProduct ){
+            maxProduct = diagonalDownLeft;
+            console.log(`maxProduct = ${maxProduct}  coords: ${x},${y} ${x-1},${y+1} ${x-2},${y+2} ${x-3},${y+3}`);
+          }
+        }
+    }
+ }
+ return maxProduct;
+}
+
+console.log(greatestProductOfDiagonals(matrix));
+
+
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
