@@ -95,7 +95,14 @@ console.log(averageWordLength(wordsArr));
 
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(mixedArr) {
+
+  return sum(mixedArr) / mixedArr.length;
+}
+
+console.log(avg(mixedArr));
+
+
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -112,15 +119,37 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+function uniquifyArray(wordsUnique) {
 
+  const arrayWordsUnique = [];
+  wordsUnique.forEach(function (word) {
+
+    if (wordsUnique.indexOf(word) === wordsUnique.lastIndexOf(word)) { //words uniques
+      arrayWordsUnique.push(word);
+    }else if (arrayWordsUnique.indexOf(word) === -1){   //repeated words, check if it has not been inserted yet
+      arrayWordsUnique.push(word);
+    }
+
+  });
+
+  return arrayWordsUnique;
+}
+
+console.log(uniquifyArray(wordsUnique));
 
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+function doesWordExist(wordsFind, word) {
 
+  includedWord = (wordsFind.includes(word)) ? true : false;
+
+  return includedWord;
+
+}
+
+console.log(doesWordExist(wordsFind,'starting'));
 
 
 // Iteration #7: Count repetition
